@@ -1,11 +1,8 @@
 import "./App.scss";
-import React from "react";
+import React, { useState } from "react";
 import useSendMessage from "./customHooks/useSendMessage";
-
-var url = "";
-chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
-  console.log(tabs);
-});
+import BasicControls from "./components/BasicControls/BasicControls";
+import Unavailable from "./components/Unavailable/Unavailable";
 
 chrome.tabs &&
   chrome.tabs.query(
@@ -31,6 +28,7 @@ chrome.tabs &&
 
 function App() {
   const [sendMessage] = useSendMessage();
+  const [page, setPage] = useState(0);
 
   const playbackSpeedIncrease = () => {
     const callbackFunction = (response) => {
@@ -55,16 +53,8 @@ function App() {
 
   return (
     <div className="App">
-      Hello, This is an react-extension-app made by me, <br></br>Shivansh Verma
-      😄.<br></br>{" "}
-      <a
-        href={`https://github.com/ShivanshVerma-coder/cra-for-extension.git`}
-        target="_blank"
-        rel="noreferrer"
-      >
-        Get started
-      </a>{" "}
-      Happy coding !!! 😉😉
+      {page === 0 && <BasicControls setPage={setPage} />}
+      {page === -1 && <Unavailable />}
       <button onClick={() => executeFunction()}>Send message</button>
       <button onClick={() => playbackSpeedIncrease()}>Increase Speed</button>
       <button onClick={() => playbackSpeedDecrease()}>Decrease Speed</button>
