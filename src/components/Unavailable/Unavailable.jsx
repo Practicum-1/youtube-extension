@@ -3,7 +3,7 @@ import "./Unavailable.scss";
 
 const Unavailable = () => {
   return (
-    <div className="Unavailable">
+    <div className="unavailable">
       <div className="content"> Unavailable</div>
     </div>
   );

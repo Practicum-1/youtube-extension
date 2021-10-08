@@ -7,12 +7,17 @@ const useVideoInfo = () => {
   const [error, setError] = useState();
 
   const getBasicInfo = async (videoID) => {
-    if (videoID !== "") {
+    if (videoID === localStorage.getItem("videoID") && videoID !== "") {
+      setBasicData(JSON.parse(localStorage.getItem("basicData")));
+      return 1;
+    } else if (videoID !== "") {
       setLoading(true);
       try {
         let url = `https://youtube.googleapis.com/youtube/v3/videos?part=id%2Csnippet&id=${videoID}&key=AIzaSyCDUUJgpm46YDrMMM6xx7shjbwWQajzmHM`;
-        console.log("customHook", url, videoID);
+        // console.log("customHook", url, videoID);
         const response = await axios.get(url);
+        localStorage.setItem("videoID", videoID);
+        localStorage.setItem("basicData", JSON.stringify(response.data));
         setBasicData(response.data);
         setLoading(false);
       } catch (err) {

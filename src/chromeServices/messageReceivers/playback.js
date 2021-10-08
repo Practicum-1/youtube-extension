@@ -1,25 +1,23 @@
+const videoElement = document.getElementsByClassName("html5-main-video")[0];
+
 export const increasePlaybackSpeed = () => {
-  document.getElementsByClassName("html5-main-video")[0].playbackRate += 0.25;
-  const currentPlaybackSpeed =
-    document.getElementsByClassName("html5-main-video")[0].playbackRate;
+  videoElement.playbackRate += 0.25;
+  const currentPlaybackSpeed = videoElement.playbackRate;
   return { msg: "speed increased", currentPlaybackSpeed };
 };
 
 export const decreasePlaybackSpeed = () => {
-  document.getElementsByClassName("html5-main-video")[0].playbackRate -= 0.25;
-  const currentPlaybackSpeed =
-    document.getElementsByClassName("html5-main-video")[0].playbackRate;
+  videoElement.playbackRate -= 0.25;
+  const currentPlaybackSpeed = videoElement.playbackRate;
   return { msg: "speed decreased", currentPlaybackSpeed };
 };
 
 export const getPlaybackSpeed = () => {
-  let currentPlaybackSpeed =
-    document.getElementsByClassName("html5-main-video")[0].playbackRate;
+  let currentPlaybackSpeed = videoElement.playbackRate;
   return { msg: "speed fetched", currentPlaybackSpeed };
 };
 
 export const setPlaybackSpeed = (playbackSpeed) => {
-  document.getElementsByClassName("html5-main-video")[0].playbackRate =
-    playbackSpeed;
+  videoElement.playbackRate = playbackSpeed;
   return { msg: "speed set", playbackSpeed };
 };
