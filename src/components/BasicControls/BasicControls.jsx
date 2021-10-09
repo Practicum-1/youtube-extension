@@ -58,8 +58,8 @@ const BasicControls = ({ setPage, videoInfo }) => {
           <h5 className="channnel-title">{channelTitle} </h5>
           <a
             target="_blank"
-            href={`www.youtubepp.com/watch?v=${videoID}`}
-            rel="noreferer"
+            href={`https://www.youtubepp.com/watch?v=${videoID}`}
+            rel="noreferrer"
           >
             &nbsp;&nbsp;&nbsp;download
           </a>
