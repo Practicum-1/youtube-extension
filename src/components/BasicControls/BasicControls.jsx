@@ -14,20 +14,28 @@ chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
   }
 });
 
-const BasicControls = ({ setPage }) => {
-  const [isPlaying, setIsPlaying] = useState(true);
+const BasicControls = ({ setPage, videoInfo }) => {
+  const [isPlaying, setIsPlaying] = useState(1);
   const { basicData, loading, error, getBasicInfo } = useVideoInfo();
   const [sendMessage] = useSendMessage();
   const snippets = basicData?.items[0]?.snippet;
-  const thumbnailURL = snippets?.thumbnails?.default?.url;
+  const thumbnailURL = snippets?.thumbnails?.medium?.url;
   const title = snippets?.title;
   const channelTitle = snippets?.channelTitle;
-
-  console.log(snippets, thumbnailURL);
 
   useEffect(() => {
     getBasicInfo(videoID);
   }, []);
+
+  useEffect(() => {
+    if (error === "No VideoID") {
+      setPage(-1);
+    }
+  }, [error]);
+
+  useEffect(() => {
+    setIsPlaying(!videoInfo.paused);
+  }, [videoInfo]);
 
   const changeVideoRunningStatus = () => {
     const callbackFunction = (response) => {
@@ -47,7 +55,10 @@ const BasicControls = ({ setPage }) => {
           <marquee>
             <h4 className="title">{title}</h4>
           </marquee>
-          <h5 className="channnel-title">{channelTitle}</h5>
+          <h5 className="channnel-title">{channelTitle} </h5>
+          <a target="_blank" href={`www.youtubepp.com/watch?v=${videoID}`}>
+            &nbsp;&nbsp;&nbsp;download
+          </a>
         </div>
 
         <div className="controls">

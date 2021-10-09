@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AdvancedControls.scss";
 import useSendMessage from "../../customHooks/useSendMessage";
 
-const AdvancedControls = () => {
+const AdvancedControls = ({ videoInfo }) => {
   const [sendMessage] = useSendMessage();
   const [currentPlaybackSpeed, setCurrentPlaybackSpeed] = useState("1");
   const playbackSpeedIncrease = () => {
@@ -20,6 +20,10 @@ const AdvancedControls = () => {
     };
     sendMessage({ type: "DECREASE_PLAYBACK_SPEED" }, callbackFunction);
   };
+
+  useEffect(() => {
+    setCurrentPlaybackSpeed(videoInfo.playbackSpeed);
+  }, [videoInfo]);
 
   return (
     <div className="advanced-controls">

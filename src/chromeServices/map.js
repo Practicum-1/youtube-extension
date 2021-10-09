@@ -3,9 +3,11 @@ import {
   decreasePlaybackSpeed,
   increasePlaybackSpeed,
   setPlaybackSpeed,
-} from "./messageReceivers/playback";
+} from "./messageReceivers/playbackControls";
 
-import { changeVideoRunningStatus } from "./messageReceivers/normalControls";
+import { changeVideoRunningStatus } from "./messageReceivers/basicControls";
+
+import { sendCurrentVideoInfo } from "./messageReceivers/sendCurrentVideoInfo";
 
 export const FUNCTION_MAP = {
   GET_PLAYBACK_SPEED: getPlaybackSpeed,
@@ -13,4 +15,5 @@ export const FUNCTION_MAP = {
   INCREASE_PLAYBACK_SPEED: increasePlaybackSpeed,
   SET_PLAYBACK_SPEED: setPlaybackSpeed,
   CHANGE_VIDEO_RUNNING_STATUS: changeVideoRunningStatus,
+  GET_CURRENT_VIDEO_INFO: sendCurrentVideoInfo,
 };
