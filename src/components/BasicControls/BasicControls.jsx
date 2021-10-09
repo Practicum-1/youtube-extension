@@ -20,6 +20,8 @@ const BasicControls = ({ setPage }) => {
   const snippets = basicData?.items[0]?.snippet;
   const thumbnailURL = snippets?.thumbnails?.default?.url;
   const title = snippets?.title;
+  const channelTitle = snippets?.channelTitle;
+
   console.log(snippets, thumbnailURL);
 
   useEffect(() => {
@@ -38,6 +40,8 @@ const BasicControls = ({ setPage }) => {
       <div className="content">
         <img src={thumbnailURL} alt="VideoThumbnail" />
         {title}
+        <br />
+        {channelTitle}
         <button
           onClick={() => {
             changeVideoRunningStatus();

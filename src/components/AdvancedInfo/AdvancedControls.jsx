@@ -17,6 +17,7 @@ const AdvancedControls = () => {
     };
     sendMessage({ type: "DECREASE_PLAYBACK_SPEED" }, callbackFunction);
   };
+
   return (
     <div className="advanced-controls">
       <div className="content">

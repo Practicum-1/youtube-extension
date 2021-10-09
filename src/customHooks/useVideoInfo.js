@@ -3,7 +3,7 @@ import axios from "axios";
 
 const useVideoInfo = () => {
   const [basicData, setBasicData] = useState();
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
 
   const getBasicInfo = async (videoID) => {
