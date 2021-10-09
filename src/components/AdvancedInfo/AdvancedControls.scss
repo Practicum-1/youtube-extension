@@ -1,0 +1,33 @@
+.advanced-controls {
+  .content {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 8px 0;
+    .title {
+      flex: 0.6;
+    }
+    .speed-count {
+      display: flex;
+      align-items: center;
+      border: 1px solid white;
+      border-radius: 10px;
+      padding: 2px 10px;
+      background-color: whitesmoke;
+      color: black;
+      font-size: 16px;
+    }
+    .controls {
+      display: flex;
+      .custom-btn {
+        border: 1px solid white;
+        border-radius: 10px;
+        margin: 5px;
+        // border: none;
+        background-color: transparent;
+        color: white;
+        cursor: pointer;
+        padding: 6px 12px;
+      }
+    }
+  }
+}

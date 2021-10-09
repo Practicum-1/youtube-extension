@@ -1,8 +1,9 @@
 @import "./variables.scss";
 html {
-  min-width: 384px;
+  min-width: 250px;
   min-height: 250px;
   margin: 0;
+  background: rgb(0, 0, 47);
   &::-webkit-scrollbar {
     display: none;
   }
@@ -15,8 +16,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-width: 384px;
-  min-height: 250px;
   color: black;
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
