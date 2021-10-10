@@ -1,10 +1,13 @@
 .advanced-controls {
+  background-color: #292a2e;
   .content {
     display: flex;
-    justify-content: space-evenly;
-    margin: 8px 0;
+    // justify-content: space-evenly;
+    padding: 8px;
     .title {
-      flex: 0.6;
+      // flex: 0.6;
+      display: flex;
+      align-items: center;
     }
     .speed-count {
       display: flex;
@@ -15,6 +18,7 @@
       background-color: whitesmoke;
       color: black;
       font-size: 16px;
+      margin: 0 10px;
     }
     .controls {
       display: flex;
