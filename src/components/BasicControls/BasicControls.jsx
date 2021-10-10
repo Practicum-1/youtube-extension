@@ -4,8 +4,9 @@ import useVideoInfo from "../../customHooks/useVideoInfo";
 import useSendMessage from "../../customHooks/useSendMessage";
 
 var videoID = "";
+let url = "";
 chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
-  let url = tabs[0]["url"];
+  url = tabs[0]["url"];
   if (url.includes("youtube.com")) {
     videoID = url.substring(
       url.indexOf("=") + 1,
