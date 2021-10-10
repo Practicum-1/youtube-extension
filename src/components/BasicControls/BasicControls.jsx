@@ -48,39 +48,58 @@ const BasicControls = ({ setPage, videoInfo }) => {
   return (
     <div className="basic-controls">
       <div className="content">
-        <div className="thumbnail">
-          <img src={thumbnailURL} alt="VideoThumbnail" />
-        </div>
         <div className="video-info">
-          <marquee>
-            <h4 className="title">{title}</h4>
-          </marquee>
-          <h5 className="channnel-title">{channelTitle} </h5>
-          <a
-            target="_blank"
-            href={`https://www.youtubepp.com/watch?v=${videoID}`}
-            rel="noreferrer"
-          >
-            &nbsp;&nbsp;&nbsp;download
-          </a>
+          <p>youtube.com</p>
+          <div className="title">
+            <marquee>
+              <h4>{title}</h4>
+            </marquee>
+          </div>
+          <div className="channel-title">
+            <h5>{channelTitle} </h5>
+          </div>
+
+          <div className="controls">
+            <div className="general-controls">
+              <button className="custom-btn">
+                <a href="">
+                  <i class="fas fa-backward"></i>
+                </a>
+              </button>
+              <button
+                className="custom-btn "
+                onClick={() => {
+                  changeVideoRunningStatus();
+                }}
+              >
+                {!isPlaying ? (
+                  <i class="fas fa-play"></i>
+                ) : (
+                  <i class="fas fa-pause"></i>
+                )}
+              </button>
+              <button className="custom-btn">
+                <a href="">
+                  <i class="fas fa-forward"></i>
+                </a>
+              </button>
+            </div>
+            <div>
+              <button className="custom-btn">
+                <a
+                  target="_blank"
+                  href={`https://www.youtubepp.com/watch?v=${videoID}`}
+                  rel="noreferrer"
+                >
+                  <i class="fas fa-download"></i>
+                </a>
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div className="controls">
-          <button
-            className="custom-btn "
-            onClick={() => {
-              changeVideoRunningStatus();
-            }}
-          >
-            {!isPlaying ? (
-              <i class="fas fa-play"></i>
-            ) : (
-              <i class="fas fa-pause"></i>
-            )}
-          </button>
-          <button className="custom-btn">
-            <a href="">&gt;|</a>
-          </button>
+        <div className="thumbnail">
+          <img src={thumbnailURL} alt="VideoThumbnail" />
         </div>
       </div>
     </div>
