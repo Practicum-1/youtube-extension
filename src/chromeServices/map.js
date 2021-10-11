@@ -9,8 +9,6 @@ import { changeVideoRunningStatus } from "./messageReceivers/basicControls";
 
 import { sendCurrentVideoInfo } from "./messageReceivers/sendCurrentVideoInfo";
 
-import { overallPlaylistTime } from "./messageReceivers/sendPlaylistInfo";
-
 export const FUNCTION_MAP = {
   GET_PLAYBACK_SPEED: getPlaybackSpeed,
   DECREASE_PLAYBACK_SPEED: decreasePlaybackSpeed,

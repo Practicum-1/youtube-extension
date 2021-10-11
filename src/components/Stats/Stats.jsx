@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Stats.scss";
+import useVideoInfo from "../../customHooks/usePlaylistInfo";
 
 var videoID = "";
 let url = "";
@@ -14,15 +15,29 @@ chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
 });
 
 const Stats = () => {
-  useEffect(() => {
-    if (url.includes("&list=")) {
-      //   getData();
-    }
-  }, []);
+  const { getPlaylistInfo } = useVideoInfo();
+
+  const getInfo = async () => {
+    getPlaylistInfo({ playlistID: "PLC3y8-rFHvwgg3vaYJgHGnModB54rxOk3" });
+  };
+
+  // useEffect(() => {
+  //   if (url.includes("&list=")) {
+  //     //   getData();
+  //   }
+  // }, []);
 
   return (
     <div className="stats">
-      <div className="content"> HLLO</div>
+      <div className="content">
+        <button
+          onClick={() => {
+            getInfo();
+          }}
+        >
+          Get Info
+        </button>
+      </div>
     </div>
   );
 };
