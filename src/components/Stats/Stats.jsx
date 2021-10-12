@@ -4,6 +4,7 @@ import useVideoInfo from "../../customHooks/usePlaylistInfo";
 
 var videoID = "";
 let url = "";
+var playlistID = "";
 chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
   url = tabs[0]["url"];
   if (url.includes("youtube.com")) {
@@ -11,14 +12,17 @@ chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
       url.indexOf("=") + 1,
       url.indexOf("&") !== -1 ? url.indexOf("&") : url.length
     );
+    if (url.includes("&list=")) {
+      playlistID = url.substring(url.lastIndexOf("=") + 1);
+    }
   }
 });
 
 const Stats = () => {
-  const { getPlaylistInfo } = useVideoInfo();
+  const { getPlaylistInfo, playlistTime } = useVideoInfo();
 
   const getInfo = async () => {
-    getPlaylistInfo({ playlistID: "PLC3y8-rFHvwgg3vaYJgHGnModB54rxOk3" });
+    getPlaylistInfo({ playlistID });
   };
 
   // useEffect(() => {
@@ -35,8 +39,9 @@ const Stats = () => {
             getInfo();
           }}
         >
-          Get Info
-        </button>
+          Get PlaylistOverallTime
+        </button>{" "}
+        {playlistTime} Seconds
       </div>
     </div>
   );

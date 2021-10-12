@@ -1,28 +1,68 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
 
 const usePlaylistInfo = () => {
-  const [playlistTime, setPlaylistTime] = useState();
+  const [playlistTime, setPlaylistTime] = useState(0);
   const [playlistItems, setPlaylistItems] = useState([]); //Array containing VDO ids of playlist
   const [playlistItemsLength, setPlaylistItemsLength] = useState(-1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
-
+  console.log(playlistTime);
   const getVideosDuration = async () => {
     console.log(playlistItems, "final");
     setLoading(true);
-    try {
-      let url = `https://youtube.googleapis.com/youtube/v3/videos?part=id%2CcontentDetails&id=${playlistItems.join(
-        ","
-      )}&key=AIzaSyCDUUJgpm46YDrMMM6xx7shjbwWQajzmHM`;
-      const response = await axios.get(url);
-      console.log(response.data, "res");
-      setLoading(false);
-    } catch (err) {
-      console.error(err);
-      setError(err);
-      setLoading(false);
-    }
+    var n = 0;
+    do {
+      var subArr = playlistItems.slice(n, n + 46);
+      n = n + 46;
+      if (subArr.length !== 0) {
+        try {
+          let url = `https://youtube.googleapis.com/youtube/v3/videos?part=id%2CcontentDetails&id=${subArr.join(
+            ","
+          )}&key=AIzaSyCDUUJgpm46YDrMMM6xx7shjbwWQajzmHM`;
+          const response = await axios.get(url);
+          response.data.items.map((item) => {
+            const duration = item.contentDetails.duration.substring(
+              2,
+              item.contentDetails.duration.length - 1
+            );
+            const formatted = duration.replace("H", ":").replace("M", ":");
+            const seconds = formatted.substring(formatted.lastIndexOf(":") + 1);
+            const minutes = formatted
+              .substring(0, formatted.lastIndexOf(":"))
+              .substring(
+                formatted
+                  .substring(0, formatted.lastIndexOf(":"))
+                  .lastIndexOf(":") + 1
+              );
+
+            const hours = formatted
+              .substring(0, formatted.lastIndexOf(":"))
+              .substring(
+                0,
+                formatted
+                  .substring(0, formatted.lastIndexOf(":"))
+                  .lastIndexOf(":")
+              );
+
+            setPlaylistTime((prevState) => {
+              return (
+                prevState +
+                (seconds !== "" ? parseInt(seconds) : 0) +
+                (minutes !== "" ? parseInt(minutes) * 60 : 0) +
+                (hours !== "" ? parseInt(hours) * 360 : 0)
+              );
+            });
+          });
+          setLoading(false);
+        } catch (err) {
+          console.error(err);
+          setError(err);
+          setLoading(false);
+        }
+      }
+    } while (subArr.length !== 0);
   };
 
   useEffect(() => {
