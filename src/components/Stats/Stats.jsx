@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Stats.scss";
 import useVideoInfo from "../../customHooks/usePlaylistInfo";
+import moment from "moment";
 
 var videoID = "";
 let url = "";
@@ -13,7 +14,10 @@ chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
       url.indexOf("&") !== -1 ? url.indexOf("&") : url.length
     );
     if (url.includes("&list=")) {
-      playlistID = url.substring(url.lastIndexOf("=") + 1);
+      playlistID = url.substring(
+        url.indexOf("&list=") + 6,
+        url.indexOf("&index=")
+      );
     }
   }
 });
@@ -38,10 +42,14 @@ const Stats = () => {
           onClick={() => {
             getInfo();
           }}
+          className="playlist-btn"
         >
-          Get PlaylistOverallTime
-        </button>{" "}
-        {playlistTime} Seconds
+          Get Overall Playlist Time
+        </button>
+        <div className="playlist-time">
+          {console.log("playlist time", typeof playlistTime, playlistTime)}
+          {moment.utc(playlistTime * 1000).format("HH:mm:ss")}
+        </div>
       </div>
     </div>
   );
