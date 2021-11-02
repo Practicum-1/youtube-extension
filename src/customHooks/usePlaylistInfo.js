@@ -8,9 +8,8 @@ const usePlaylistInfo = () => {
   const [playlistItemsLength, setPlaylistItemsLength] = useState(-1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
-  console.log(playlistTime);
+
   const getVideosDuration = async () => {
-    console.log(playlistItems, "final");
     setLoading(true);
     var n = 0;
     do {
@@ -66,13 +65,13 @@ const usePlaylistInfo = () => {
   };
 
   useEffect(() => {
-    console.log(playlistItemsLength, playlistItems.length);
     if (playlistItemsLength === playlistItems.length) {
       getVideosDuration();
     }
   }, [playlistItems, playlistItemsLength]);
 
   const getPlaylistInfo = async ({ playlistID, pageToken = "" }) => {
+    console.log("playlistID in hook", playlistID);
     if (
       playlistID === localStorage.getItem("playlistID") &&
       playlistID !== ""
