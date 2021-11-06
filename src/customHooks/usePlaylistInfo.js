@@ -22,29 +22,46 @@ const usePlaylistInfo = () => {
           )}&key=AIzaSyCDUUJgpm46YDrMMM6xx7shjbwWQajzmHM`;
           const response = await axios.get(url);
           response.data.items.map((item) => {
-            const duration = item.contentDetails.duration.substring(
-              2,
-              item.contentDetails.duration.length - 1
-            );
+            console.log(item.contentDetails.duration);
+            const duration = item.contentDetails.duration.substring(2);
             const formatted = duration.replace("H", ":").replace("M", ":");
-            const seconds = formatted.substring(formatted.lastIndexOf(":") + 1);
-            const minutes = formatted
-              .substring(0, formatted.lastIndexOf(":"))
-              .substring(
-                formatted
-                  .substring(0, formatted.lastIndexOf(":"))
-                  .lastIndexOf(":") + 1
-              );
+            // const seconds = formatted.includes("S")
+            //   ? formatted.substring(formatted.lastIndexOf(":") + 1)
+            //   : 0;
+            // console.log(seconds);
+            // const minutes = formatted
+            //   .substring(0, formatted.lastIndexOf(":"))
+            //   .substring(
+            //     formatted
+            //       .substring(0, formatted.lastIndexOf(":"))
+            //       .lastIndexOf(":") + 1
+            //   );
 
-            const hours = formatted
-              .substring(0, formatted.lastIndexOf(":"))
-              .substring(
-                0,
-                formatted
-                  .substring(0, formatted.lastIndexOf(":"))
-                  .lastIndexOf(":")
-              );
-
+            // const hours = formatted
+            //   .substring(0, formatted.lastIndexOf(":"))
+            //   .substring(
+            //     0,
+            //     formatted
+            //       .substring(0, formatted.lastIndexOf(":"))
+            //       .lastIndexOf(":")
+            //   );
+            const seconds = duration.includes("S")
+              ? duration.substring(
+                  duration.includes("M") ? duration.indexOf("M") + 1 : 0,
+                  duration.indexOf("S")
+                )
+              : 0;
+            console.log(duration.indexOf("M"), duration.indexOf("S"));
+            const minutes = duration.includes("M")
+              ? duration.substring(
+                  duration.includes("H") ? duration.indexOf("H") + 1 : 0,
+                  duration.indexOf("M")
+                )
+              : 0;
+            const hours = duration.includes("H")
+              ? duration.substring(0, duration.indexOf("H"))
+              : 0;
+            console.log("S", seconds, "M", minutes, "H", hours);
             setPlaylistTime((prevState) => {
               return (
                 prevState +
