@@ -25,3 +25,6 @@ const messagesFromReactAppListener = (msg, sender, sendResponse) => {
  * Fired when a message is sent from either an extension process or a content script.
  */
 chrome.runtime.onMessage.addListener(messagesFromReactAppListener);
+
+// code which listens to messages from the react app and sends back the response to the react app to update the UI accordingly.
+// this uses chrome APIs to listen to messages from the react app.

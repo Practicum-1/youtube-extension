@@ -32,3 +32,5 @@ const useSendMessage = () => {
 };
 
 export default useSendMessage;
+
+// it is a custom hook used to send messages to the web page and receive response from it. It uses Chrome API to send message to the web page and receive response from it.

@@ -21,3 +21,5 @@ export const setPlaybackSpeed = (playbackSpeed) => {
   videoElement.playbackRate = playbackSpeed;
   return { msg: "speed set", playbackSpeed };
 };
+
+//manages speed of playback speed of video

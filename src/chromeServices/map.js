@@ -17,3 +17,5 @@ export const FUNCTION_MAP = {
   CHANGE_VIDEO_RUNNING_STATUS: changeVideoRunningStatus,
   GET_CURRENT_VIDEO_INFO: sendCurrentVideoInfo,
 };
+
+// Snippet which maps the function names to the functions themselves in the FUNCTION_MAP object.

@@ -25,26 +25,6 @@ const usePlaylistInfo = () => {
             console.log(item.contentDetails.duration);
             const duration = item.contentDetails.duration.substring(2);
             const formatted = duration.replace("H", ":").replace("M", ":");
-            // const seconds = formatted.includes("S")
-            //   ? formatted.substring(formatted.lastIndexOf(":") + 1)
-            //   : 0;
-            // console.log(seconds);
-            // const minutes = formatted
-            //   .substring(0, formatted.lastIndexOf(":"))
-            //   .substring(
-            //     formatted
-            //       .substring(0, formatted.lastIndexOf(":"))
-            //       .lastIndexOf(":") + 1
-            //   );
-
-            // const hours = formatted
-            //   .substring(0, formatted.lastIndexOf(":"))
-            //   .substring(
-            //     0,
-            //     formatted
-            //       .substring(0, formatted.lastIndexOf(":"))
-            //       .lastIndexOf(":")
-            //   );
             const seconds = duration.includes("S")
               ? duration.substring(
                   duration.includes("M") ? duration.indexOf("M") + 1 : 0,
@@ -131,3 +111,9 @@ const usePlaylistInfo = () => {
 };
 
 export default usePlaylistInfo;
+
+// This custom Hook is used to get the duration of a playlist. It uses the playlistID to get the playlist items and then uses the videoIds to get the duration of each video.
+// It then sums up the duration of each video and stores it in the playlistTime state. It also stores the videoIds in the playlistItems state.
+// Here we are using Youtube Apis to extract the videos of a playlist as well as each of its duration.
+// We are doing so with the help of recursion. The recursion is used to get the next page of the playlist items.
+// The playlistItems state is used to store the videoIds of the playlist.

@@ -4,3 +4,5 @@ export const changeVideoRunningStatus = () => {
   !videoElement.paused ? videoElement.pause() : videoElement.play();
   return { msg: "status changed", running: !videoElement.paused }; //running:1 means running
 };
+
+//pause play

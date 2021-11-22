@@ -33,3 +33,5 @@ const useVideoInfo = () => {
 };
 
 export default useVideoInfo;
+
+// uses Youtube API to get basic info about a video from its url (id, title, description, etc.) and stores it in localStorage for later use.
