@@ -5,7 +5,11 @@ import {
   setPlaybackSpeed,
 } from "./messageReceivers/playbackControls";
 
-import { changeVideoRunningStatus } from "./messageReceivers/basicControls";
+import {
+  increaseCurrentTime,
+  decreaseCurrentTime,
+  changeVideoRunningStatus,
+} from "./messageReceivers/basicControls";
 
 import { sendCurrentVideoInfo } from "./messageReceivers/sendCurrentVideoInfo";
 
@@ -16,6 +20,8 @@ export const FUNCTION_MAP = {
   SET_PLAYBACK_SPEED: setPlaybackSpeed,
   CHANGE_VIDEO_RUNNING_STATUS: changeVideoRunningStatus,
   GET_CURRENT_VIDEO_INFO: sendCurrentVideoInfo,
+  INCREASE_CURRENT_TIME: increaseCurrentTime,
+  DECREASE_CURRENT_TIME: decreaseCurrentTime,
 };
 
 // Snippet which maps the function names to the functions themselves in the FUNCTION_MAP object.

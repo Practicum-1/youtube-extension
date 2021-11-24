@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./BasicControls.scss";
 import useVideoInfo from "../../customHooks/useVideoInfo";
 import useSendMessage from "../../customHooks/useSendMessage";
+import { changeCurrentTime } from "../../chromeServices/messageReceivers/basicControls";
 
 var videoID = "";
 let url = "";
@@ -46,6 +47,17 @@ const BasicControls = ({ setPage, videoInfo }) => {
     sendMessage({ type: "CHANGE_VIDEO_RUNNING_STATUS" }, callbackFunction);
   };
 
+  const changeCurrentTime = (increase) => {
+    const callbackFunction = (response) => {
+      console.log(response);
+    };
+    if (increase) {
+      sendMessage({ type: "INCREASE_CURRENT_TIME" }, callbackFunction);
+    } else {
+      sendMessage({ type: "DECREASE_CURRENT_TIME" }, callbackFunction);
+    }
+  };
+
   return (
     <div className="basic-controls">
       <div className="content">
@@ -62,7 +74,12 @@ const BasicControls = ({ setPage, videoInfo }) => {
 
           <div className="controls">
             <div className="general-controls">
-              <button className="custom-btn">
+              <button
+                className="custom-btn"
+                onClick={() => {
+                  changeCurrentTime(false);
+                }}
+              >
                 <a href="">
                   <i class="fas fa-backward"></i>
                 </a>
@@ -79,7 +96,12 @@ const BasicControls = ({ setPage, videoInfo }) => {
                   <i class="fas fa-pause"></i>
                 )}
               </button>
-              <button className="custom-btn">
+              <button
+                className="custom-btn"
+                onClick={() => {
+                  changeCurrentTime(true);
+                }}
+              >
                 <a href="">
                   <i class="fas fa-forward"></i>
                 </a>
