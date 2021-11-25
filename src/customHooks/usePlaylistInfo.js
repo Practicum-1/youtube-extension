@@ -47,7 +47,7 @@ const usePlaylistInfo = () => {
                 prevState +
                 (seconds !== "" ? parseInt(seconds) : 0) +
                 (minutes !== "" ? parseInt(minutes) * 60 : 0) +
-                (hours !== "" ? parseInt(hours) * 360 : 0)
+                (hours !== "" ? parseInt(hours) * 60 * 60 : 0)
               );
             });
           });

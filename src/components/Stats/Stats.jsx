@@ -14,6 +14,7 @@ var Query = new URLSearchParams(url.substring(url.indexOf("&") + 1));
 
 const Stats = () => {
   const { getPlaylistInfo, playlistTime } = useVideoInfo();
+  console.log(playlistTime);
 
   const getInfo = async () => {
     getPlaylistInfo({ playlistID });
@@ -36,7 +37,9 @@ const Stats = () => {
           Get Overall Playlist Time
         </button>
         <div className="playlist-time">
-          {moment.utc(playlistTime * 1000).format("HH:mm:ss")}
+          {Math.floor(playlistTime / 3600)} hours{" "}
+          {Math.floor((playlistTime % 3600) / 60)} minutes{" "}
+          {Math.floor((playlistTime % 3600) % 60)} seconds
         </div>
       </div>
     </div>
