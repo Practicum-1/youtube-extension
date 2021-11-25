@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Stats.scss";
-import useVideoInfo from "../../customHooks/usePlaylistInfo";
+import usePlaylistInfo from "../../customHooks/usePlaylistInfo";
 import moment from "moment";
 
 let url = "";
@@ -13,7 +13,7 @@ chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
 var Query = new URLSearchParams(url.substring(url.indexOf("&") + 1));
 
 const Stats = () => {
-  const { getPlaylistInfo, playlistTime } = useVideoInfo();
+  const { getPlaylistInfo, playlistTime, error } = usePlaylistInfo();
   console.log(playlistTime);
 
   const getInfo = async () => {
@@ -36,11 +36,15 @@ const Stats = () => {
         >
           Get Overall Playlist Time
         </button>
-        <div className="playlist-time">
-          {Math.floor(playlistTime / 3600)} hours{" "}
-          {Math.floor((playlistTime % 3600) / 60)} minutes{" "}
-          {Math.floor((playlistTime % 3600) % 60)} seconds
-        </div>
+        {playlistTime ? (
+          <div className="playlist-time">
+            {Math.floor(playlistTime / 3600)} hours{" "}
+            {Math.floor((playlistTime % 3600) / 60)} minutes{" "}
+            {Math.floor((playlistTime % 3600) % 60)} seconds
+          </div>
+        ) : error ? (
+          <div className="playlist-time">{error}</div>
+        ) : null}
       </div>
     </div>
   );

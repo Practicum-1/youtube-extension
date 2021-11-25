@@ -100,7 +100,7 @@ const usePlaylistInfo = () => {
         }
       } catch (err) {
         console.error(err);
-        setError(err);
+        setError("Not a valid playlist.");
         setLoading(false);
       }
     } else {
