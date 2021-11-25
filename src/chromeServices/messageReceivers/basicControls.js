@@ -6,6 +6,7 @@ export const changeVideoRunningStatus = () => {
 };
 
 export const increaseCurrentTime = () => {
+  console.log(videoElement.currentTime);
   videoElement.currentTime = videoElement.currentTime + 10;
 
   return {

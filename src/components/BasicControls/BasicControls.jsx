@@ -80,7 +80,7 @@ const BasicControls = ({ setPage, videoInfo }) => {
                   changeCurrentTime(false);
                 }}
               >
-                <a href="">
+                <a>
                   <i class="fas fa-backward"></i>
                 </a>
               </button>
@@ -102,7 +102,7 @@ const BasicControls = ({ setPage, videoInfo }) => {
                   changeCurrentTime(true);
                 }}
               >
-                <a href="">
+                <a>
                   <i class="fas fa-forward"></i>
                 </a>
               </button>

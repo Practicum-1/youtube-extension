@@ -12,7 +12,8 @@ const messagesFromReactAppListener = (msg, sender, sendResponse) => {
       const response = runFunction();
       sendResponse(response);
     }
-  } catch {
+  } catch (err) {
+    console.log(err);
     // Prepare the response object with information about the site
     const response = {
       msg: "No Function available",
